@@ -19,10 +19,29 @@ const functionColleges = {
             res.send(error)
         }
     },
-
+    getCollegeByDirection: async (req, res) => {
+        try {
+            let { id } = req.params
+            const college = await modelCollege.find({direccionNucleo:id})
+            res.send(college)
+        } catch (error) {
+            res.send(error)
+        }
+    },
     createCollege: async (req, res) => {
         try {
             let { direccionNucleo, nombre, codigo, direccion, telefono, email, rector } = req.body
+            const college = new modelCollege({ direccionNucleo, nombre, codigo, direccion, telefono, email, rector })
+            await college.save()
+            res.send(college)
+        } catch (error) {
+            res.status(500).send("Error: " + error.message);
+        }
+    },
+    createCollegeByDirection: async (req, res) => {
+        try {
+            let { nombre, codigo, direccion, telefono, email, rector } = req.body
+            let direccionNucleo = req.params.id
             const college = new modelCollege({ direccionNucleo, nombre, codigo, direccion, telefono, email, rector })
             await college.save()
             res.send(college)

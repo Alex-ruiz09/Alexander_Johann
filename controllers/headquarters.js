@@ -9,11 +9,20 @@ const functionHeadquarter = {
         }
     },
 
-    getheadquarters: async (req, res) => {
+    getHeadquarter: async (req, res) => {
         try {
             let { id } = req.params
             const headquarter = await modelHeadquarter.findById(id)
-            res.send(Headquarter)
+            res.send(headquarter)
+        } catch (error) {
+            res.send(error)
+        }
+    },
+    getHeadquarterByCollege: async (req, res) => {
+        try {
+            let { id } = req.params
+            const headquarter = await modelHeadquarter.find({colegio:id})
+            res.send(headquarter)
         } catch (error) {
             res.send(error)
         }
