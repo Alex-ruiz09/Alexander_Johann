@@ -1,3 +1,5 @@
+import { validationResult } from "express-validator";
+
 export function error(req, res, next) {
     const result = validationResult(req)
     if (!result.isEmpty()) {
@@ -5,3 +7,8 @@ export function error(req, res, next) {
     }
     next()
 }
+
+function hola(){
+    console.log(1+2)
+}
+hola()

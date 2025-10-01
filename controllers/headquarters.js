@@ -2,7 +2,7 @@ import modelHeadquarter from "../models/headquarters.js";
 const functionHeadquarter = {
     getHeadquarters: async (req, res) => {
         try {
-            const headquarters = await modelHeadquarter.find();
+            const headquarters = await modelHeadquarter.find({ isActive: true });
             res.send(headquarters);
         } catch (error) {
             res.status(500).send("Error: " + error);
@@ -12,7 +12,7 @@ const functionHeadquarter = {
     getHeadquarter: async (req, res) => {
         try {
             let { id } = req.params
-            const headquarter = await modelHeadquarter.findById(id)
+            const headquarter = await modelHeadquarter.findOne({ _id: id, isActive: true })
             res.send(headquarter)
         } catch (error) {
             res.send(error)
@@ -21,7 +21,7 @@ const functionHeadquarter = {
     getHeadquarterByCollege: async (req, res) => {
         try {
             let { id } = req.params
-            const headquarter = await modelHeadquarter.find({colegio:id})
+            const college = await modelCollege.findOne({ _id: id, isActive: true })
             res.send(headquarter)
         } catch (error) {
             res.send(error)
@@ -44,16 +44,16 @@ const functionHeadquarter = {
             let { id } = req.params
             let { colegio, nombre, codigo, direccion, telefono, coordinador } = req.body
             let updateAt = new Date()
-            const HeadquarterUpdate = await modelHeadquarter.findByIdAndUpdate(id, { colegio, nombre, codigo, direccion, telefono, coordinador, updateAt}, { new: true })
+            const HeadquarterUpdate = await modelHeadquarter.findByIdAndUpdate(id, { colegio, nombre, codigo, direccion, telefono, coordinador, updateAt }, { new: true })
             res.send(HeadquarterUpdate)
         } catch (error) {
             res.status(500).send("Error: " + error);
         }
     },
-    
+
     deleteHeadquarter: async (req, res) => {
         try {
-            let {id} = req.params
+            let { id } = req.params
             let isActive = false
             const HeadquarterUpdate = await modelHeadquarter.findByIdAndUpdate(id, { isActive }, { new: true })
             res.send(HeadquarterUpdate)

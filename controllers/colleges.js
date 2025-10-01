@@ -3,7 +3,7 @@ import modelCollege from "../models/colleges.js";
 const functionColleges = {
     getColleges: async (req, res) => {
         try {
-            const colleges = await modelCollege.find();
+            const colleges = await modelCollege.find({ isActive: true });
             res.send(colleges);
         } catch (error) {
             res.status(500).send("Error: " + error);
@@ -13,7 +13,7 @@ const functionColleges = {
     getCollege: async (req, res) => {
         try {
             let { id } = req.params
-            const college = await modelCollege.findById(id)
+            const college = await modelCollege.findOne({ _id: id, isActive: true });
             res.send(college)
         } catch (error) {
             res.send(error)
@@ -22,7 +22,7 @@ const functionColleges = {
     getCollegeByDirection: async (req, res) => {
         try {
             let { id } = req.params
-            const college = await modelCollege.find({direccionNucleo:id})
+            const college = await modelCollege.find({ direccionNucleo: id })
             res.send(college)
         } catch (error) {
             res.send(error)

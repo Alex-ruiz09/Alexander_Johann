@@ -5,7 +5,7 @@ const ObjectId = Schema.ObjectId;
 
 
 const modelCollege = new Schema({
-    direccionNucleo: {type: ObjectId, ref: 'DireccionNucleo'},
+    direccionNucleo: {type: ObjectId, ref: 'direccionNucleo'},
     nombre: String,
     isActive: {type:Boolean, default: true},
     codigo: String,
