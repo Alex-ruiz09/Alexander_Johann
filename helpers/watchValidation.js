@@ -7,8 +7,3 @@ export function error(req, res, next) {
     }
     next()
 }
-
-function hola(){
-    console.log(1+2)
-}
-hola()

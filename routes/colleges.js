@@ -1,6 +1,6 @@
 import functionColleges from "../controllers/colleges.js";
 import express from 'express'
-import { param, body, validationResult, query } from "express-validator";
+import { param, body } from "express-validator";
 import { error } from "../helpers/watchValidation.js"
 
 const router = express.Router()
@@ -11,7 +11,7 @@ const validationCreateCollege = [
     body("codigo").trim().notEmpty(),
     body("direccion").trim().notEmpty(),
     body("telefono").trim().notEmpty().isNumeric(),
-    body("email").trim().notEmpty(),
+    body("email").trim().notEmpty().isEmail(),
     body("rector").trim().notEmpty()
 ];
 const validationCreateCollegeByDirection = [
@@ -20,7 +20,7 @@ const validationCreateCollegeByDirection = [
     body("codigo").trim().notEmpty(),
     body("direccion").trim().notEmpty(),
     body("telefono").trim().notEmpty().isNumeric(),
-    body("email").trim().notEmpty(),
+    body("email").trim().notEmpty().isEmail(),
     body("rector").trim().notEmpty()
 ];
 
