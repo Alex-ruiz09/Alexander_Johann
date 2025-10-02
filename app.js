@@ -12,7 +12,7 @@ app.use("/api/sedes/",headquarters)
 app.listen(process.env.PORT, () => {
     try {
         console.log(`Ay Dios ${process.env.PORT}`);
-        mongoose.connect(`mongodb+srv://userExperts:${process.env.CLAVEMONGO}@boss.61jcsip.mongodb.net/?retryWrites=true&w=majority&appName=BOSS`)
+        mongoose.connect(`mongodb+srv://carlosalbertodb42:Sena_2025_proyectoFinal@cluster0.8swbecd.mongodb.net/`)
             .then(() => {
                 console.log("perdon mami")
             })

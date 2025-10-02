@@ -21,7 +21,8 @@ const functionHeadquarter = {
     getHeadquarterByCollege: async (req, res) => {
         try {
             let { id } = req.params
-            const college = await modelCollege.findOne({ _id: id, isActive: true })
+            console.log(id)
+            const headquarter = await modelHeadquarter.find({ colegio: id, isActive: true })
             res.send(headquarter)
         } catch (error) {
             res.send(error)
@@ -51,10 +52,21 @@ const functionHeadquarter = {
         }
     },
 
-    deleteHeadquarter: async (req, res) => {
+    desactiveHeadquarter: async (req, res) => {
         try {
             let { id } = req.params
             let isActive = false
+            const HeadquarterUpdate = await modelHeadquarter.findByIdAndUpdate(id, { isActive }, { new: true })
+            res.send(HeadquarterUpdate)
+        } catch (error) {
+            res.status(500).send("Error: " + error);
+        }
+    },
+
+    activeHeadquarter: async (req, res) => {
+        try {
+            let { id } = req.params
+            let isActive = true
             const HeadquarterUpdate = await modelHeadquarter.findByIdAndUpdate(id, { isActive }, { new: true })
             res.send(HeadquarterUpdate)
         } catch (error) {

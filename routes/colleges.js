@@ -1,7 +1,7 @@
 import functionColleges from "../controllers/colleges.js";
-import express from 'express'
+import express from 'express';
 import { param, body } from "express-validator";
-import { error } from "../helpers/watchValidation.js"
+import { error } from "../helpers/watchValidation.js";
 
 const router = express.Router()
 
@@ -25,11 +25,11 @@ const validationCreateCollegeByDirection = [
 ];
 
 router.get("/", functionColleges.getColleges)
-router.get("/:id", param("id").notEmpty(), error, functionColleges.getCollege)
-router.get("/direcciones-nucleo/:id/colegios", param("id").notEmpty(), error, functionColleges.getCollegeByDirection)
-router.post("/", validationCreateCollege, error, functionColleges.createCollege)
-router.post("/direcciones-nucleo/:id/colegios", validationCreateCollegeByDirection, error, functionColleges.createCollegeByDirection)
-router.put("/:id", param("id").notEmpty(), error, functionColleges.updateCollege)
-router.delete("/:id", param("id").notEmpty(), error, functionColleges.deleteCollege)
+router.get("/:id", param("id").notEmpty(), error, functionColleges.getCollege);
+router.get("/direcciones-nucleo/:id/colegios", param("id").notEmpty(), error, functionColleges.getCollegeByDirection);
+router.post("/", validationCreateCollege, error, functionColleges.createCollege);
+router.post("/direcciones-nucleo/:id/colegios", validationCreateCollegeByDirection, error, functionColleges.createCollegeByDirection);
+router.put("/:id", validationCreateCollegeByDirection, error, functionColleges.updateCollege);
+router.delete("/:id", param("id").notEmpty(), error, functionColleges.deleteCollege);
 
-export default router
+export default router;
